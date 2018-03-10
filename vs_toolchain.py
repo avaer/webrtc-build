@@ -153,6 +153,7 @@ def DetectVisualStudioPath():
     # For now we use a hardcoded default with an environment variable override.
     for path in (
         os.environ.get('vs2017_install'),
+        r'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise',
         r'C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional',
         r'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community'):
       if path and os.path.exists(path):
@@ -420,11 +421,11 @@ def GetToolchainDir():
   runtime_dll_dirs = SetEnvironmentAndGetRuntimeDllDirs()
   win_sdk_dir = SetEnvironmentAndGetSDKDir()
 
-  print '''vs_path = "%s"
-sdk_path = "%s"
-vs_version = "%s"
-wdk_dir = "%s"
-runtime_dirs = "%s"
+  print '''%s
+%s
+%s
+%s
+%s
 ''' % (
       NormalizePath(os.environ['GYP_MSVS_OVERRIDE_PATH']),
       win_sdk_dir,
